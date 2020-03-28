@@ -1,0 +1,9 @@
+fsl_gpio.h:157:20:GPIO_WritePinOutput	24	static
+fsl_pit.h:268:20:PIT_SetTimerPeriod	24	static
+fsl_pit.h:308:20:PIT_StartTimer	16	static
+fsl_pit.h:322:20:PIT_StopTimer	16	static
+FloppyDeviceDriver.c:9:6:delay	24	static
+FloppyDeviceDriver.c:16:6:FDDStep	16	static
+FloppyDeviceDriver.c:33:6:FDDInit	24	static
+FloppyDeviceDriver.c:42:6:FDDReset	24	static
+FloppyDeviceDriver.c:59:6:FDDSetFrequency	24	static

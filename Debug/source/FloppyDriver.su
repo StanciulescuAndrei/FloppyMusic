@@ -1,0 +1,15 @@
+core_cm0plus.h:745:22:NVIC_EnableIRQ	16	static
+core_cm0plus.h:804:22:NVIC_SetPriority	24	static
+fsl_common.h:212:20:EnableIRQ	16	static
+fsl_gpio.h:197:20:GPIO_TogglePinsOutput	16	static
+fsl_pit.h:127:20:PIT_GetDefaultConfig	16	static
+fsl_pit.h:181:20:PIT_EnableInterrupts	24	static
+fsl_pit.h:229:24:PIT_GetStatusFlags	16	static
+fsl_pit.h:242:20:PIT_ClearStatusFlags	24	static
+I2CObserver.h:23:13:i2c_slave_callback	24	static
+I2CObserver.h:52:6:InitI2CInterface	32	static
+I2CObserver.h:77:8:I2CReceiveData	8	static
+PercussionDriver.h:28:6:InitPercussionDriver	16	static
+PercussionDriver.h:39:6:ProcessPercussionMessage	24	static
+FloppyDriver.c:69:6:PIT_IRQHandler	24	static
+FloppyDriver.c:99:5:main	616	static
