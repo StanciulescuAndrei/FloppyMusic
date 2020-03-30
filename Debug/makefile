@@ -28,25 +28,25 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: FloppyDriver.axf
+all: FloppyMusic.axf
 
 # Tool invocations
-FloppyDriver.axf: $(OBJS) $(USER_OBJS)
+FloppyMusic.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -Xlinker -Map="FloppyDriver.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T FloppyDriver_Debug.ld -o "FloppyDriver.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -Xlinker -Map="FloppyMusic.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m0plus -mthumb -T FloppyDriver_Debug.ld -o "FloppyMusic.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) FloppyDriver.axf
+	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) FloppyMusic.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "FloppyDriver.axf"; # arm-none-eabi-objcopy -v -O binary "FloppyDriver.axf" "FloppyDriver.bin" ; # checksum -p MKL25Z128xxx4 -d "FloppyDriver.bin";
+	-arm-none-eabi-size "FloppyMusic.axf"; # arm-none-eabi-objcopy -v -O binary "FloppyMusic.axf" "FloppyMusic.bin" ; # checksum -p MKL25Z128xxx4 -d "FloppyMusic.bin";
 	-@echo ' '
 
 .PHONY: all clean dependents post-build
