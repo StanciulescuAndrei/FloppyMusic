@@ -3,6 +3,10 @@
  *
  *  Created on: Mar 28, 2020
  *      Author: Stanciu
+ *
+ *  @brief
+ *  The library should manage all interfaces to the percussion library. For now it only flips bits whenever
+ *  a new nessage arrives, so the instrument partitioning should be done by the master.
  */
 
 #ifndef PERCUSSIONDRIVER_H_
