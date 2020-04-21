@@ -13,6 +13,13 @@
 #include "fsl_gpio.h"
 #include "fsl_pit.h"
 
+#include <math.h>
+
+#define NOF 2 /* Merge pana la 6 cand o sa am atatea */
+#define INTERRUPT_CHANNELS 2
+
+
+
 /*
  *@brief GPIO structure that holds the port and the pin number for easier access
  */
@@ -31,6 +38,13 @@ typedef struct FloppyDeviceDriver{
 	GPIOPin stepPin;    /*!< Pin structure for sending the step pulses */
 	GPIOPin dirPin;     /*!< Pin structure for the direction signal */
 }FloppyDeviceDriver;
+
+/*
+ * @brief Initialize the floppies, assign the pins to the channels and set up the timer interrupts
+ *
+ */
+
+void InitFloppyInterface(FloppyDeviceDriver* fdd, float * midi);
 
 /*
  * @brief Function that performs a step of the floppy read head
@@ -61,8 +75,12 @@ void FDDReset(FloppyDeviceDriver * device);
 
 void FDDSetFrequency(int channelID, float frequency);
 
-
-
+/*
+ *@brief Timer interrupt function
+ *
+ * The function is called for every interrupt the LPTMR generates and updates every floppy drive
+ */
+void PulseGenerator();
 
 
 

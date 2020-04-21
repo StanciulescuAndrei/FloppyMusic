@@ -7,3 +7,4 @@ FloppyDeviceDriver.c:16:6:FDDStep	16	static
 FloppyDeviceDriver.c:33:6:FDDInit	24	static
 FloppyDeviceDriver.c:42:6:FDDReset	24	static
 FloppyDeviceDriver.c:59:6:FDDSetFrequency	24	static
+FloppyDeviceDriver.c:69:6:InitFloppyInterface	160	static

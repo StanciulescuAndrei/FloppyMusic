@@ -25,8 +25,21 @@ extern "C" {
  */
 void BOARD_InitBootPins(void);
 
-#define SOPT5_UART0RXSRC_UART_RX 0x00u /*!<@brief UART0 receive data source select: UART0_RX pin */
-#define SOPT5_UART0TXSRC_UART_TX 0x00u /*!<@brief UART0 transmit data source select: UART0_TX pin */
+#define SOPT4_TPM1CH0SRC_TPM1_CH0 0x00u /*!<@brief TPM1 channel 0 input capture source select: TPM1_CH0 signal */
+#define SOPT5_UART0RXSRC_UART_RX 0x00u  /*!<@brief UART0 receive data source select: UART0_RX pin */
+#define SOPT5_UART0TXSRC_UART_TX 0x00u  /*!<@brief UART0 transmit data source select: UART0_TX pin */
+
+/*! @name PORTE0 (number 1), J2[18]/D14
+  @{ */
+#define BOARD_INITPINS_I2C_SDA_PORT PORTE /*!<@brief PORT device name: PORTE */
+#define BOARD_INITPINS_I2C_SDA_PIN 0U     /*!<@brief PORTE pin index: 0 */
+                                          /* @} */
+
+/*! @name PORTE1 (number 2), J2[20]/D15
+  @{ */
+#define BOARD_INITPINS_I2C_SCL_PORT PORTE /*!<@brief PORT device name: PORTE */
+#define BOARD_INITPINS_I2C_SCL_PIN 1U     /*!<@brief PORTE pin index: 1 */
+                                          /* @} */
 
 /*! @name PORTA2 (number 28), J1[4]/D1/UART0_TX
   @{ */
@@ -48,65 +61,145 @@ void BOARD_InitBootPins(void);
 #define BOARD_INITPINS_LED_GREEN_PIN 19U    /*!<@brief PORTB pin index: 19 */
                                             /* @} */
 
-/*! @name PORTA13 (number 33), J2[2]/D8
+/*! @name PORTC7 (number 64), J1[1]
   @{ */
-#define BOARD_INITPINS_DIR1_FGPIO FGPIOA /*!<@brief FGPIO device name: FGPIOA */
-#define BOARD_INITPINS_DIR1_GPIO GPIOA /*!<@brief GPIO device name: GPIOA */
-#define BOARD_INITPINS_DIR1_PORT PORTA /*!<@brief PORT device name: PORTA */
-#define BOARD_INITPINS_DIR1_PIN 13U    /*!<@brief PORTA pin index: 13 */
-                                       /* @} */
+#define BOARD_INITPINS_DIR_0_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_DIR_0_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_DIR_0_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_DIR_0_PIN 7U     /*!<@brief PORTC pin index: 7 */
+                                        /* @} */
+
+/*! @name PORTC3 (number 58), J1[5]
+  @{ */
+#define BOARD_INITPINS_DIR_1_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_DIR_1_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_DIR_1_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_DIR_1_PIN 3U     /*!<@brief PORTC pin index: 3 */
+                                        /* @} */
+
+/*! @name PORTC5 (number 62), J1[9]
+  @{ */
+#define BOARD_INITPINS_DIR_2_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_DIR_2_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_DIR_2_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_DIR_2_PIN 5U     /*!<@brief PORTC pin index: 5 */
+                                        /* @} */
+
+/*! @name PORTC10 (number 67), J1[13]
+  @{ */
+#define BOARD_INITPINS_DIR_3_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_DIR_3_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_DIR_3_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_DIR_3_PIN 10U    /*!<@brief PORTC pin index: 10 */
+                                        /* @} */
 
 /*! @name PORTC12 (number 69), J2[1]
   @{ */
-#define BOARD_INITPINS_STEP1_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
-#define BOARD_INITPINS_STEP1_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
-#define BOARD_INITPINS_STEP1_PORT PORTC /*!<@brief PORT device name: PORTC */
-#define BOARD_INITPINS_STEP1_PIN 12U    /*!<@brief PORTC pin index: 12 */
+#define BOARD_INITPINS_DIR_4_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_DIR_4_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_DIR_4_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_DIR_4_PIN 12U    /*!<@brief PORTC pin index: 12 */
                                         /* @} */
+
+/*! @name PORTC16 (number 71), J2[5]
+  @{ */
+#define BOARD_INITPINS_DIR_5_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_DIR_5_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_DIR_5_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_DIR_5_PIN 16U    /*!<@brief PORTC pin index: 16 */
+                                        /* @} */
+
+/*! @name PORTC0 (number 55), J1[3]
+  @{ */
+#define BOARD_INITPINS_STEP_0_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_STEP_0_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_STEP_0_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_STEP_0_PIN 0U     /*!<@brief PORTC pin index: 0 */
+                                         /* @} */
+
+/*! @name PORTC4 (number 61), J1[7]
+  @{ */
+#define BOARD_INITPINS_STEP_1_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_STEP_1_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_STEP_1_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_STEP_1_PIN 4U     /*!<@brief PORTC pin index: 4 */
+                                         /* @} */
+
+/*! @name PORTC6 (number 63), J1[11]
+  @{ */
+#define BOARD_INITPINS_STEP_2_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_STEP_2_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_STEP_2_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_STEP_2_PIN 6U     /*!<@brief PORTC pin index: 6 */
+                                         /* @} */
+
+/*! @name PORTC11 (number 68), J1[15]
+  @{ */
+#define BOARD_INITPINS_STEP_3_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_STEP_3_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_STEP_3_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_STEP_3_PIN 11U    /*!<@brief PORTC pin index: 11 */
+                                         /* @} */
 
 /*! @name PORTC13 (number 70), J2[3]
   @{ */
-#define BOARD_INITPINS_STEP2_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
-#define BOARD_INITPINS_STEP2_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
-#define BOARD_INITPINS_STEP2_PORT PORTC /*!<@brief PORT device name: PORTC */
-#define BOARD_INITPINS_STEP2_PIN 13U    /*!<@brief PORTC pin index: 13 */
-                                        /* @} */
+#define BOARD_INITPINS_STEP_4_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_STEP_4_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_STEP_4_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_STEP_4_PIN 13U    /*!<@brief PORTC pin index: 13 */
+                                         /* @} */
 
-/*! @name PORTD5 (number 78), J2[4]/D9
+/*! @name PORTC17 (number 72), J2[7]
   @{ */
-#define BOARD_INITPINS_DIR2_FGPIO FGPIOD /*!<@brief FGPIO device name: FGPIOD */
-#define BOARD_INITPINS_DIR2_GPIO GPIOD /*!<@brief GPIO device name: GPIOD */
-#define BOARD_INITPINS_DIR2_PORT PORTD /*!<@brief PORT device name: PORTD */
-#define BOARD_INITPINS_DIR2_PIN 5U     /*!<@brief PORTD pin index: 5 */
-                                       /* @} */
-
-/*! @name PORTE0 (number 1), J2[18]/D14
-  @{ */
-#define BOARD_INITPINS_I2C_SDA_PORT PORTE /*!<@brief PORT device name: PORTE */
-#define BOARD_INITPINS_I2C_SDA_PIN 0U     /*!<@brief PORTE pin index: 0 */
-                                          /* @} */
-
-/*! @name PORTE1 (number 2), J2[20]/D15
-  @{ */
-#define BOARD_INITPINS_I2C_SCL_PORT PORTE /*!<@brief PORT device name: PORTE */
-#define BOARD_INITPINS_I2C_SCL_PIN 1U     /*!<@brief PORTE pin index: 1 */
-                                          /* @} */
+#define BOARD_INITPINS_STEP_5_FGPIO FGPIOC /*!<@brief FGPIO device name: FGPIOC */
+#define BOARD_INITPINS_STEP_5_GPIO GPIOC /*!<@brief GPIO device name: GPIOC */
+#define BOARD_INITPINS_STEP_5_PORT PORTC /*!<@brief PORT device name: PORTC */
+#define BOARD_INITPINS_STEP_5_PIN 17U    /*!<@brief PORTC pin index: 17 */
+                                         /* @} */
 
 /*! @name PORTE5 (number 6), J9[15]
   @{ */
-#define BOARD_INITPINS_PERC_01_FGPIO FGPIOE /*!<@brief FGPIO device name: FGPIOE */
-#define BOARD_INITPINS_PERC_01_GPIO GPIOE /*!<@brief GPIO device name: GPIOE */
-#define BOARD_INITPINS_PERC_01_PORT PORTE /*!<@brief PORT device name: PORTE */
-#define BOARD_INITPINS_PERC_01_PIN 5U     /*!<@brief PORTE pin index: 5 */
-                                          /* @} */
+#define BOARD_INITPINS_INA_0_FGPIO FGPIOE /*!<@brief FGPIO device name: FGPIOE */
+#define BOARD_INITPINS_INA_0_GPIO GPIOE /*!<@brief GPIO device name: GPIOE */
+#define BOARD_INITPINS_INA_0_PORT PORTE /*!<@brief PORT device name: PORTE */
+#define BOARD_INITPINS_INA_0_PIN 5U     /*!<@brief PORTE pin index: 5 */
+                                        /* @} */
 
 /*! @name PORTE4 (number 5), J9[13]
   @{ */
-#define BOARD_INITPINS_PERC_02_FGPIO FGPIOE /*!<@brief FGPIO device name: FGPIOE */
-#define BOARD_INITPINS_PERC_02_GPIO GPIOE /*!<@brief GPIO device name: GPIOE */
-#define BOARD_INITPINS_PERC_02_PORT PORTE /*!<@brief PORT device name: PORTE */
-#define BOARD_INITPINS_PERC_02_PIN 4U     /*!<@brief PORTE pin index: 4 */
-                                          /* @} */
+#define BOARD_INITPINS_INA_1_FGPIO FGPIOE /*!<@brief FGPIO device name: FGPIOE */
+#define BOARD_INITPINS_INA_1_GPIO GPIOE /*!<@brief GPIO device name: GPIOE */
+#define BOARD_INITPINS_INA_1_PORT PORTE /*!<@brief PORT device name: PORTE */
+#define BOARD_INITPINS_INA_1_PIN 4U     /*!<@brief PORTE pin index: 4 */
+                                        /* @} */
+
+/*! @name PORTE3 (number 4), J9[11]
+  @{ */
+#define BOARD_INITPINS_INB_0_FGPIO FGPIOE /*!<@brief FGPIO device name: FGPIOE */
+#define BOARD_INITPINS_INB_0_GPIO GPIOE /*!<@brief GPIO device name: GPIOE */
+#define BOARD_INITPINS_INB_0_PORT PORTE /*!<@brief PORT device name: PORTE */
+#define BOARD_INITPINS_INB_0_PIN 3U     /*!<@brief PORTE pin index: 3 */
+                                        /* @} */
+
+/*! @name PORTE2 (number 3), J9[9]
+  @{ */
+#define BOARD_INITPINS_INB_1_FGPIO FGPIOE /*!<@brief FGPIO device name: FGPIOE */
+#define BOARD_INITPINS_INB_1_GPIO GPIOE /*!<@brief GPIO device name: GPIOE */
+#define BOARD_INITPINS_INB_1_PORT PORTE /*!<@brief PORT device name: PORTE */
+#define BOARD_INITPINS_INB_1_PIN 2U     /*!<@brief PORTE pin index: 2 */
+                                        /* @} */
+
+/*! @name PORTD4 (number 77), J1[6]/D2
+  @{ */
+#define BOARD_INITPINS_ENA_PORT PORTD /*!<@brief PORT device name: PORTD */
+#define BOARD_INITPINS_ENA_PIN 4U     /*!<@brief PORTD pin index: 4 */
+                                      /* @} */
+
+/*! @name PORTA12 (number 32), J1[8]/D3
+  @{ */
+#define BOARD_INITPINS_ENB_PORT PORTA /*!<@brief PORT device name: PORTA */
+#define BOARD_INITPINS_ENB_PIN 12U    /*!<@brief PORTA pin index: 12 */
+                                      /* @} */
 
 /*!
  * @brief Configures pin routing and optionally pin electrical features.

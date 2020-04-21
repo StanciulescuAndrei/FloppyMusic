@@ -34,7 +34,6 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 #include "board.h"
 #include "peripherals.h"
 #include "pin_mux.h"
@@ -44,27 +43,20 @@
 #include "fsl_gpio.h"
 #include "fsl_pit.h"
 #include "fsl_uart.h"
+#include "fsl_tpm.h"
 
 #include "FloppyDeviceDriver.h"
 #include "I2CObserver.h"
 #include "PercussionDriver.h"
 
-#define PulseGenerator PIT_IRQHandler
-
-#define NOF 2
-#define INTERRUPT_CHANNELS 2
 
 #define PERCUSSION_ID 0xf0
+#define PulseGenerator PIT_IRQHandler
+
+float midi[127];
 
 /* Gobal device driver variables */
 FloppyDeviceDriver fdd[2];
-
-
-/*
- *@brief Timer interrupt function
- *
- * The function is called for every interrupt the LPTMR generates and updates every floppy drive
- */
 
 void PulseGenerator(){
 	uint8_t channel;
@@ -92,7 +84,6 @@ void PulseGenerator(){
 	*/
 }
 
-
 /*
  * @brief   Application entry point.
  */
@@ -117,37 +108,19 @@ int main(void) {
     };
     GPIO_PinInit(GPIOB, 19, &statusLedConfig);
 
-
     /*
-     * FloppyDeviceDriver initialization
-     * Static pin assignments for now
+     * Set up the Floppy Drive interface
      */
-
-    GPIOPin stepLanes[] = {{PTC, 12}, {PTC, 13}};
-    GPIOPin directionLanes[] = {{PTA, 13}, {PTD, 5}};
-
+    InitFloppyInterface(fdd, midi);
     /*
-     * Assign first half to the first channel, second half to second channel
-     * Initialize and reset floppys to start position
-     */
-
-    for(int channel=0;channel<INTERRUPT_CHANNELS;channel++){
-    	for(int index = 0;index<NOF/INTERRUPT_CHANNELS;index++){
-    		int absoluteIndex = channel * NOF/INTERRUPT_CHANNELS;
-    		FDDInit(&(fdd[absoluteIndex]), stepLanes[absoluteIndex], directionLanes[absoluteIndex], channel);
-    		FDDReset(&(fdd[absoluteIndex]));
-    	}
-    }
-
-    /*
-     * PIT Configuration
-     * Timer interrupt is used to generate the
-     * base frequency for the FDD step pulses.
-     * The timer interval is defined as 1 / baseFrequency
-     *
-     * Each of the 2 PIT channels is assigned to a Floppy device so each has its own interrupt.
-     * This way we can generate the frequencies without having a master frequency and a divider
-     */
+    * PIT Configuration
+    * Timer interrupt is used to generate the
+    * base frequency for the FDD step pulses.
+    * The timer interval is defined as 1 / baseFrequency
+    *
+    * Each of the 2 PIT channels is assigned to a Floppy device so each has its own interrupt.
+    * This way we can generate the frequencies without having a master frequency and a divider
+    */
 
     pit_config_t pitConfig;
     PIT_GetDefaultConfig(&pitConfig);
@@ -157,21 +130,15 @@ int main(void) {
     EnableIRQ(PIT_IRQn);
 
     PRINTF("Periodic Timer Interrupt Initialized: %d MHz\r\n", CLOCK_GetFreq(kCLOCK_BusClk)/1000000U);
-
-    /* Set both channels to disabled */
     FDDSetFrequency(0, 1);
     FDDSetFrequency(1, 1);
 
+
     /*
-     * Prepare MIDI lookup table
+     * Initialize percussion drivers
+     *
      */
-    float midi[127];
-    int a = 440; // a is 440 hz...
-    for (int x = 0; x < 127; ++x)
-    {
-       midi[x] = (a / 32) * (pow(((double)2), ((double)(x - 9)) / 12));
-    }
-    midi[0] = -1.00f;
+    InitPercussionDriver();
 
     /*
      * Initialize I2C device driver with buffers and all the good stuff

@@ -13,6 +13,7 @@ C_SRCS += \
 ../drivers/fsl_lptmr.c \
 ../drivers/fsl_pit.c \
 ../drivers/fsl_smc.c \
+../drivers/fsl_tpm.c \
 ../drivers/fsl_uart.c 
 
 OBJS += \
@@ -25,6 +26,7 @@ OBJS += \
 ./drivers/fsl_lptmr.o \
 ./drivers/fsl_pit.o \
 ./drivers/fsl_smc.o \
+./drivers/fsl_tpm.o \
 ./drivers/fsl_uart.o 
 
 C_DEPS += \
@@ -37,6 +39,7 @@ C_DEPS += \
 ./drivers/fsl_lptmr.d \
 ./drivers/fsl_pit.d \
 ./drivers/fsl_smc.d \
+./drivers/fsl_tpm.d \
 ./drivers/fsl_uart.d 
 
 
@@ -44,7 +47,7 @@ C_DEPS += \
 drivers/%.o: ../drivers/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MCU C Compiler'
-	arm-none-eabi-gcc -D__REDLIB__ -DCPU_MKL25Z128VLK4 -DCPU_MKL25Z128VLK4_cm0plus -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -DPRINTF_FLOAT_ENABLE=0 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/drivers" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/CMSIS" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/utilities" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/drivers" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/CMSIS" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/utilities" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/board" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/source" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic" -I"/home/stanciu/Documents/MCUXpresso/workspace/FloppyMusic/startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../$(@D)/"=. -mcpu=cortex-m0plus -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	arm-none-eabi-gcc -D__REDLIB__ -DCPU_MKL25Z128VLK4 -DCPU_MKL25Z128VLK4_cm0plus -DSDK_OS_BAREMETAL -DFSL_RTOS_BM -DSDK_DEBUGCONSOLE=0 -DCR_INTEGER_PRINTF -DPRINTF_FLOAT_ENABLE=0 -D__MCUXPRESSO -D__USE_CMSIS -DDEBUG -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\drivers" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\utilities" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\CMSIS" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\drivers" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\CMSIS" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\utilities" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\board" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\source" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver" -I"C:\Users\Stanciu\Documents\MCUXpressoIDE_10.3.1_2233\workspace\FloppyDriver\startup" -O0 -fno-common -g3 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../$(@D)/"=. -mcpu=cortex-m0plus -mthumb -D__REDLIB__ -fstack-usage -specs=redlib.specs -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

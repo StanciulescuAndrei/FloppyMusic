@@ -65,3 +65,39 @@ void FDDSetFrequency(int channelID, float frequency){
 		 PIT_StartTimer(PIT, channelID);
 	}
 }
+
+void InitFloppyInterface(FloppyDeviceDriver* fdd, float * midi){
+
+    /*
+     * FloppyDeviceDriver initialization
+     * Static pin assignments for now
+     */
+
+    GPIOPin stepLanes[] = {{PTC, 0}, {PTC, 4}, {PTC, 6}, {PTC, 11}, {PTC, 13}, {PTC, 17}};
+    GPIOPin directionLanes[] = {{PTC, 7}, {PTC, 3}, {PTC, 5}, {PTC, 10}, {PTC, 12}, {PTC, 16}};
+
+    /*
+     * Assign first half to the first channel, second half to second channel
+     * Initialize and reset floppys to start position
+     */
+
+    for(int channel=0;channel<INTERRUPT_CHANNELS;channel++){
+    	for(int index = 0;index<NOF/INTERRUPT_CHANNELS;index++){
+    		int absoluteIndex = channel * NOF/INTERRUPT_CHANNELS;
+    		FDDInit(&(fdd[absoluteIndex]), stepLanes[absoluteIndex], directionLanes[absoluteIndex], channel);
+    		FDDReset(&(fdd[absoluteIndex]));
+    	}
+    }
+
+    /*
+     * Prepare MIDI lookup table
+     */
+
+    int a = 440; // a is 440 hz...
+    for (int x = 0; x < 127; ++x)
+    {
+       midi[x] = (a / 32) * (pow(((double)2), ((double)(x - 9)) / 12));
+    }
+    midi[0] = -1.00f;
+}
+

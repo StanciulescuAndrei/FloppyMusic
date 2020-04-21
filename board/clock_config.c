@@ -54,6 +54,7 @@ board: FRDM-KL25Z
 #define SIM_OSC32KSEL_LPO_CLK                             3U  /*!< OSC32KSEL select: LPO clock */
 #define SIM_PLLFLLSEL_MCGFLLCLK_CLK                       0U  /*!< PLLFLL select: MCGFLLCLK clock */
 #define SIM_PLLFLLSEL_MCGPLLCLK_CLK                       1U  /*!< PLLFLL select: MCGPLLCLK clock */
+#define SIM_TPM_CLK_SEL_PLLFLLSEL_CLK                     1U  /*!< TPM clock select: PLLFLLSEL output clock */
 
 /*******************************************************************************
  * Variables
@@ -102,6 +103,7 @@ outputs:
 - {id: OSCERCLK.outFreq, value: 8 MHz}
 - {id: PLLFLLCLK.outFreq, value: 24 MHz}
 - {id: System_clock.outFreq, value: 48 MHz}
+- {id: TPMCLK.outFreq, value: 24 MHz}
 settings:
 - {id: MCGMode, value: PEE}
 - {id: MCG.FCRDIV.scale, value: '1', locked: true}
@@ -125,6 +127,7 @@ settings:
 - {id: SIM.TPMSRCSEL.sel, value: SIM.PLLFLLSEL}
 - {id: SIM.UART0SRCSEL.sel, value: SIM.PLLFLLSEL}
 - {id: SIM.USBSRCSEL.sel, value: SIM.PLLFLLSEL}
+- {id: TPMClkConfig, value: 'yes'}
 sources:
 - {id: OSC.OSC.outFreq, value: 8 MHz, enabled: true}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
@@ -190,6 +193,8 @@ void BOARD_BootClockRUN(void)
     CLOCK_SetSimConfig(&simConfig_BOARD_BootClockRUN);
     /* Set SystemCoreClock variable. */
     SystemCoreClock = BOARD_BOOTCLOCKRUN_CORE_CLOCK;
+    /* Set TPM clock source. */
+    CLOCK_SetTpmClock(SIM_TPM_CLK_SEL_PLLFLLSEL_CLK);
 }
 
 /*******************************************************************************
